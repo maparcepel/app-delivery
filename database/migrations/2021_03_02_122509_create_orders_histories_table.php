@@ -15,6 +15,10 @@ class CreateOrdersHistoriesTable extends Migration
     {
         Schema::create('orders_histories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');            
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('restrict')->onUpdate('cascade');  
             $table->timestamps();
         });
     }
