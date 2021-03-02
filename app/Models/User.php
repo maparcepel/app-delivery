@@ -42,5 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function userType(){
+        return $this->belongsTo(UserType::class);
+    }
     
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+
+    public function OrdersHistories(){
+        return $this->hasMany(OrdersHistory::class);
+    }
+
 }
