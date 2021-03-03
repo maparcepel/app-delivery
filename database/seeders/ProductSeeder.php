@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class ProductSeeder extends Seeder
 {
@@ -16,50 +17,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
 
-        Product::create([
-            'name'      => 'Nike Air Force',
-            'category'  => 'Shoes',
-            'type'      => '1',
-            'desc'      => 'Normal',
-            'price'     => 33.99
-        ]);
-
-        Product::create([
-            'name'      => 'Vans Classic',
-            'category'  => 'Shoes',
-            'type'      => '1',
-            'desc'      => 'Normal',
-            'price'     => 63.99
-        ]);
+        Product::factory()->count(120)->create();
         
-        Product::create([
-            'name'      => 'Adidas Running',
-            'category'  => 'Shoes',
-            'type'      => '2',
-            'desc'      => 'Delivery',
-            'price'     => 53.90
-        ]);
-
-        Product::create([
-            'name'      => 'Pull&Bear carrot jeans',
-            'category'  => 'Jeans',
-            'type'      => '1',
-            'desc'      => 'Normal',
-            'price'     => 53.90
-        ]);
-        Product::create([
-            'name'      => 'ASOS DESIGN slim jeans',
-            'category'  => 'Jeans',
-            'type'      => '2',
-            'desc'      => 'Delivery',
-            'price'     => 52.90
-        ]);
-
-        
-        
-        
-
-            
-          
     }
 }
