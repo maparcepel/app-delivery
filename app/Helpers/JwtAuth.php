@@ -44,13 +44,14 @@ class JwtAuth{
                
             //Generar token con los datos del usuario en DB
             $token = array(
-                'sub'       =>  $user->id,
-                'name'      =>  $user->name,
-                'email'     =>  $user->email,
-                'phone'     =>  $user->phone,
-                'user_type' =>  $user->user_type,
-                'iat'       =>  time(),
-                'exp'       =>  time() + (7 * 24 * 60 * 60)
+                'sub'           =>  $user->id,
+                'name'          =>  $user->name,
+                'surname'       =>  $user->surname,
+                'email'         =>  $user->email,
+                'phone'         =>  $user->phone,
+                'user_type_id'  =>  $user->user_type_id,
+                'iat'           =>  time(),
+                'exp'           =>  time() + (7 * 24 * 60 * 60)
             );
 
             $jwt = JWT::encode($token, $this->key, 'HS256');
@@ -65,11 +66,12 @@ class JwtAuth{
                     "status" => 'success',
                     'code'      => 200,
                     "response" => array(
-                        'token'     => $jwt,
-                        'name'      =>  $user->name,
-                        'phone'     =>  $user->phone,
-                        'email'     =>  $user->email,
-                        'user_type' =>  $user->user_type,
+                        'token'         => $jwt,
+                        'name'          =>  $user->name,
+                        'surname'       =>  $user->surname,
+                        'phone'         =>  $user->phone,
+                        'email'         =>  $user->email,
+                        'user_type_id'  =>  $user->user_type_id,
                         )
                 );
             }else{

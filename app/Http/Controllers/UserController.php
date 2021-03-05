@@ -27,9 +27,11 @@ class UserController extends Controller
             //Validar datos
             $validate = \Validator::make($params_array, [
                 'name'      => 'required|alpha',
+                'surname'   => 'required|alpha',
                 'phone'     => 'required|numeric',
                 'email'     => 'required|email|unique:users',
-                'user_type' => 'required|numeric',
+                'password'  => 'required',
+                'user_type_id' => 'required|numeric',
             ]);
 
             if ($validate->fails()) {
@@ -51,10 +53,11 @@ class UserController extends Controller
 
                 $user = new User();
                 $user->name = $params_array['name'];
+                $user->surname = $params_array['surname'];
                 $user->phone = $params_array['phone'];
                 $user->email = $params_array['email'];
                 $user->password = $pwd;
-                $user->user_type = $params_array['user_type'];
+                $user->user_type_id = $params_array['user_type_id'];
 
                 $user->save();
 
@@ -141,9 +144,10 @@ class UserController extends Controller
             //Validar los datos
             $user_id = $jwtAuth->checkToken($token, true);
             $validate = \Validator::make($params_array, [
-                'name'      => 'required',
-                'email'     => 'required|email|unique:users,email,'.$user_id->sub,
-                'phone'     => 'required|numeric'
+                'name'          => 'required',
+                'surname'       => 'required',
+                'email'         => 'required|email|unique:users,email,'.$user_id->sub,
+                'phone'         => 'required|numeric'
             ]);
 
             if ($validate->fails()) {

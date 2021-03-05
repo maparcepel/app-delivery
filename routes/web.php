@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::post('/signup', [UserController::class, 'signup']);
 Route::post('/login', [UserController::class, 'login']);
 Route::put('/user/edit', [UserController::class, 'edit']);
-Route::get('/products/get/{categodyId?}', [ProductController::class, 'get']);
+Route::post('/products/get', [ProductController::class, 'get']);
 
 
 

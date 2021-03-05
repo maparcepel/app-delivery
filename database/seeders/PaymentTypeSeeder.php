@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class PaymentTypeSeeder extends Seeder
 {
@@ -13,7 +15,7 @@ class PaymentTypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table( 'user_types' )->insert( [ 
+        DB::table( 'payment_types' )->insert( [ 
             [
                 'type_name'          => 'Cash',
             ],
