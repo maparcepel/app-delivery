@@ -16,10 +16,13 @@ class ProductController extends Controller
         $params_array = json_decode($json, true);
 
         //Filtrar por tipo de producto
+
         $products = Product::where(['product_type_id' => $params_array['product_type_id']])->get();
 
         //Filtrar por subcategorías y por categorías que están en el listado, pero no están asociadas a estas subcategorías
+       
         $subcategory_ids = [];
+
         if(!is_null($params_array['subcategory_ids'])){
 
             $subcategory_ids = explode(',', $params_array['subcategory_ids']);
@@ -27,20 +30,32 @@ class ProductController extends Controller
 
         if(!is_null($params_array['category_ids'])){
 
-            //Obtener categorías 
-            $categories = Subcategory::whereIn('id', $subcategory_ids)->get('category_id');
-
+            //Obtener categorías a las que pertenecen las subcategorías pasadas
             
-            echo $categories ;die();
+            $categories = Subcategory::whereIn('id', $subcategory_ids)->get('category_id')->toArray();
 
-            $category_ids = explode(',', $params_array['category_ids']);
+            $categories2 = [];
+            foreach($categories as $key => $value){
+                
+                array_push($categories2, (string)$value['category_id']);
+                
+            }
+            
+            //Obtener array categorías pasadas
 
+            $category_ids = collect(explode(',', $params_array['category_ids']));
 
+            //En las categorías pasadas eliminar las que están vinculadas a las subcategorías
 
+            $category_diff = $category_ids->diff($categories2);
+            
         }
 
-        $products = $products->whereIn('subcategory_id', $subcategory_ids);
+        $products1 = $products->whereIn('subcategory_id',  $subcategory_ids);
+        $products2 = $products->whereIn('category_id',  $category_diff);
+        
+        $products_merged = $products1->merge($products2);
 
-        return json_encode($products);
+        return json_encode($products_merged);
     }
 }
