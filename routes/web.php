@@ -28,6 +28,7 @@ Route::put('/user/edit', [UserController::class, 'edit']);
 Route::post('/products/get', [ProductController::class, 'get']);
 Route::get('/categories/get', [CategoryController::class, 'get']);
 Route::post('/setOrder', [OrderController::class, 'setOrder']);
+Route::get('/history/get', [OrderController::class, 'historyGet']);
 
 
 

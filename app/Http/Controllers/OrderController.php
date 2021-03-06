@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class OrderController extends Controller
 {
@@ -57,7 +58,7 @@ class OrderController extends Controller
 
                 //Order items
                 foreach($params_array['items'] as $item){
-                    
+
                     $orderItems = new OrderItem();
                     $orderItems->product_id = $item['product_id'];
                     $orderItems->quantity   = $item['quantity'];
@@ -86,4 +87,54 @@ class OrderController extends Controller
         return json_encode($data);
     }
 
+
+    public function historyGet(Request $request)
+    {
+        $token = $request->header('Authorization');
+        $jwtAuth = new \JwtAuth();
+        $checkToken = $jwtAuth->checkToken($token);
+
+        //Compruebo validez del token
+        if ($checkToken) {
+
+            //Obtener usuario en JWT
+            $decoded = $jwtAuth->checkToken($token, true);  
+            $user_id = $decoded->sub;
+
+            $orders = Order::where('user_id', $user_id)->get();
+
+            if(is_object($orders)){
+
+                $orders =  $orders->map(function ($item, $key) {
+
+                    return collect($item)->except(['user_id', 'created_at', 'updated_at'])->toArray();
+                    
+                });
+
+                $data = array(
+                    'code'      => 200,
+                    'status'    => 'success',
+                    'message'   => 'Se han encontrado ' . $orders->count() . ' pedidos de este usuario',
+                    'Pedidos'   => $orders
+                );   
+            }else{
+
+                $data = array(
+                    'code' => 204,
+                    'status' => 'error',
+                    'message' => 'Este usuario no tiene pedidos',
+                );
+            }
+                
+        } else{
+
+            $data = array(
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Usuario no identificado. Token no válido',
+            );
+        }
+
+        return json_encode($data);
+    }
 }

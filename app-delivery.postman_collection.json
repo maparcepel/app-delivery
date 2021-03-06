@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "db2bcc2a-52eb-43fe-937e-891e73929e51",
+		"name": "app-delivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "json",
+							"value": "{\"name\":\"Marcel\",\"surname\":\"Molina\",\"phone\":\"625941002\",\"email\":\"maparcepel@gmail.com\",\"password\":\"1234\",\"user_type_id\":\"2\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{app-delivery}}/signup",
+					"host": [
+						"{{app-delivery}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/edit",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsIm5hbWUiOiJNYXJjZWwiLCJzdXJuYW1lIjoiTW9saW5hIiwiZW1haWwiOiJtYXBhcmNlcGVsQGdtYWlsLmNvbSIsInBob25lIjoiNjI1OTQxMDAyIiwidXNlcl90eXBlX2lkIjoyLCJpYXQiOjE2MTQ4NTEwNTAsImV4cCI6MTYxNTQ1NTg1MH0.wsBgdX61gsRmuGx9GBAk9-f5A6rzdZ8ASt9Q6gfPmR0\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "json",
+							"value": "{\"name\":\"Marcel\",\"surname\":\"Molina\",\"phone\":\"625941002\",\"email\":\"maparcepel@gmail.com\",\"user_type_id\":\"2\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{app-delivery}}/user/edit",
+					"host": [
+						"{{app-delivery}}"
+					],
+					"path": [
+						"user",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "json",
+							"value": "{\"email\":\"maparcepel@gmail.com\",\"password\":\"1234\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{app-delivery}}/login",
+					"host": [
+						"{{app-delivery}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products/get",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "json",
+							"value": "{\"product_type_id\":\"1\",\"category_ids\":\"\",\"subcategory_ids\":\"12,20\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{app-delivery}}/products/get",
+					"host": [
+						"{{app-delivery}}"
+					],
+					"path": [
+						"products",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categories/get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{app-delivery}}/categories/get",
+					"host": [
+						"{{app-delivery}}"
+					],
+					"path": [
+						"categories",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "setOrder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsIm5hbWUiOiJNYXJjZWwiLCJzdXJuYW1lIjoiTW9saW5hIiwiZW1haWwiOiJtYXBhcmNlcGVsQGdtYWlsLmNvbSIsInBob25lIjoiNjI1OTQxMDAyIiwidXNlcl90eXBlX2lkIjoyLCJpYXQiOjE2MTUwMjY2NzUsImV4cCI6MTYxNTYzMTQ3NX0.JgLLmLqRVmkSIHsTBqILRM7JMvmRmWwxowxE2zU79Fo\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "json",
+							"value": "{\"user_id\":\"1\",\"pickup_day\":\"2021-03-20\",\"pickup_time\":\"12:30:00\",\"address\":\"c/ Barri de La Bleda 54\",\"payment_type_id\":\"2\",\"items\":[{\"product_id\":\"1\",\"quantity\":\"5\",\"unit_price\":\"30.60\"},{\"product_id\":\"5\",\"quantity\":\"2\",\"unit_price\":\"40.90\"}]}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{app-delivery}}/setOrder",
+					"host": [
+						"{{app-delivery}}"
+					],
+					"path": [
+						"setOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "history/get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsIm5hbWUiOiJNYXJjZWwiLCJzdXJuYW1lIjoiTW9saW5hIiwiZW1haWwiOiJtYXBhcmNlcGVsQGdtYWlsLmNvbSIsInBob25lIjoiNjI1OTQxMDAyIiwidXNlcl90eXBlX2lkIjoyLCJpYXQiOjE2MTUwMjY2NzUsImV4cCI6MTYxNTYzMTQ3NX0.JgLLmLqRVmkSIHsTBqILRM7JMvmRmWwxowxE2zU79Fo\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{app-delivery}}/history/get",
+					"host": [
+						"{{app-delivery}}"
+					],
+					"path": [
+						"history",
+						"get"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
