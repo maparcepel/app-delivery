@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -26,6 +27,7 @@ Route::post('/login', [UserController::class, 'login']);
 Route::put('/user/edit', [UserController::class, 'edit']);
 Route::post('/products/get', [ProductController::class, 'get']);
 Route::get('/categories/get', [CategoryController::class, 'get']);
+Route::post('/setOrder', [OrderController::class, 'setOrder']);
 
 
 
