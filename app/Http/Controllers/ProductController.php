@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
+use Illuminate\Support\Str;
 
 
 
@@ -16,7 +17,7 @@ class ProductController extends Controller
         $json = $request->input('json', null);
         $params_array = json_decode($json, true);
 
-        if($params_array['product_type_id'] != 1 || $params_array['product_type_id'] != 1 || empty($params_array['product_type_id'])){
+        if(($params_array['product_type_id'] != 1 && $params_array['product_type_id'] != 2) || empty($params_array['product_type_id'])){
             $data = array(
                 'status'    => 'error',
                 'code'      => 400,
@@ -64,10 +65,74 @@ class ProductController extends Controller
 
             $products1 = $products->whereIn('subcategory_id',  $subcategory_ids);
             $products2 = $products->whereIn('category_id',  $category_diff);
-            
-            $data = $products1->merge($products2);
+
+            $products = $products1->merge($products2);
+
+            $products =  $products->map(function ($item, $key) {
+
+                return collect($item)->except(['created_at', 'updated_at'])->toArray();
+                
+            });
+
+            $data = array(
+                'code'      => 200,
+                'status'    => 'success',
+                'message'   => 'Se han encontrado ' . $products->count() . ' productos',
+                'Pedidos'   => $products
+            );   
         }
 
         return json_encode($data);
     }
+
+    public function search( Request $request ){
+      
+        $json = $request->input('json', null);
+        $params_array = json_decode($json, true);
+
+        if( empty($params_array['product_type_id'] )){
+
+            $data = array(
+                'status'    => 'error',
+                'code'      => 400,
+                'message'   => 'El valor <product_type_id> no es correcto',
+            );
+
+        }elseif( empty($params_array['text']) ){
+
+            $data = array(
+                'status'    => 'error',
+                'code'      => 400,
+                'message'   => 'Debe incluir un texto para buscar',
+            );
+
+        }else{  
+            echo $params_array['product_type_id'];
+
+            $search = $params_array['text'];
+
+            $products = Product::query()
+                ->where('name', 'LIKE', "%{$search}%")
+                ->orWhere('description', 'LIKE', "%{$search}%")
+                ->get();
+
+                $products = $products->where('product_type_id', $params_array['product_type_id']);
+
+                $products =  $products->map(function ($item, $key) {
+
+                    return collect($item)->except(['created_at', 'updated_at']);
+                    
+                });
+
+            $data = array(
+                'status'    => 'success',
+                'code'      => 200,
+                'message'   => 'Se han encontrado ' . $products->count() . ' productos',
+                'productos' => $products->values()
+            );
+        }
+
+        return json_encode($data);
+    }
+
 }
