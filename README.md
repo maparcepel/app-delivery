@@ -9,7 +9,7 @@ Historial de pedidos.
 Además de registro y login de usuarios.
 
 
-## Herramientas utilizadas:
+## Herramientas utilizadas
 
 - Laravel 8.29.0
 - Json Web Token
@@ -17,4 +17,4 @@ Además de registro y login de usuarios.
 
 ## Base de datos
 
-<img src="http://http://binarysunsetestudio.com/ext_img/DB-app-delivery.PNG">
+![App-delivery](http://binarysunsetestudio.com/ext_img/DB-app-delivery.PNG)
