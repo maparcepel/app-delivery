@@ -15,6 +15,10 @@ Además de registro y login de usuarios.
 - Json Web Token
 - [Paquete de traducciones Laravel en español](https://github.com/Laraveles/spanish).
 
+## Documentación 
+
+![Documentación hecha con Postman](https://documenter.getpostman.com/view/10581396/Tz5p5d96)
 ## Base de datos
 
 ![App-delivery](http://binarysunsetestudio.com/ext_img/DB-app-delivery.PNG)
+
