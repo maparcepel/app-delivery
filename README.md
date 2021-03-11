@@ -17,7 +17,9 @@ Además de registro y login de usuarios.
 
 ## Documentación 
 
-![Documentación hecha con Postman](https://documenter.getpostman.com/view/10581396/Tz5p5d96)
+La documentación (hecha con Postman) está disponible en el siguiente enlace:
+https://documenter.getpostman.com/view/10581396/Tz5p5d96
+
 ## Base de datos
 
 ![App-delivery](http://binarysunsetestudio.com/ext_img/DB-app-delivery.PNG)
