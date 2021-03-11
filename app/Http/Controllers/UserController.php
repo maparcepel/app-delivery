@@ -1,5 +1,7 @@
 <?php
 
+//Coded by Marcel Molina
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -116,10 +118,6 @@ class UserController extends Controller
 
             //Devolver token o datos
             $signup = $jwtAuth->signup($params->email, $pwd);
-
-            if (!empty($params->getToken)) {
-                $signup = $jwtAuth->signup($params->email, $pwd, true);
-            }
         }
 
         return json_encode($signup);

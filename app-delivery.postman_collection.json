@@ -39,7 +39,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsIm5hbWUiOiJNYXJjZWwiLCJzdXJuYW1lIjoiTW9saW5hIiwiZW1haWwiOiJtYXBhcmNlcGVsQGdtYWlsLmNvbSIsInBob25lIjoiNjI1OTQxMDAyIiwidXNlcl90eXBlX2lkIjoyLCJpYXQiOjE2MTQ4NTEwNTAsImV4cCI6MTYxNTQ1NTg1MH0.wsBgdX61gsRmuGx9GBAk9-f5A6rzdZ8ASt9Q6gfPmR0\"",
+						"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsIm5hbWUiOiJNYXJjZWwiLCJzdXJuYW1lIjoiTW9saW5hIiwiZW1haWwiOiJtYXBhcmNlcGVsQGdtYWlsLmNvbSIsInBob25lIjoiNjI1OTQxMDAyIiwidXNlcl90eXBlX2lkIjoyLCJpYXQiOjE2MTUxMzgxMDMsImV4cCI6MTYxNTc0MjkwM30.3blYxV9GF59Qsu1FxCS0ouCSuTyz44744hE9DBX55b4\"",
 						"type": "text"
 					}
 				],
@@ -48,7 +48,7 @@
 					"urlencoded": [
 						{
 							"key": "json",
-							"value": "{\"name\":\"Marcel\",\"surname\":\"Molina\",\"phone\":\"625941002\",\"email\":\"maparcepel@gmail.com\",\"user_type_id\":\"2\"}",
+							"value": "{\"name\":\"Marcel\",\"surname\":\"Molina\",\"phone\":\"625941002\",\"email\":\"maparcepel2@gmail.com\"}",
 							"type": "text"
 						}
 					]
@@ -110,7 +110,7 @@
 					"urlencoded": [
 						{
 							"key": "json",
-							"value": "{\"product_type_id\":\"1\",\"category_ids\":\"\",\"subcategory_ids\":\"12,20\"}",
+							"value": "{\"product_type_id\":\"2\",\"category_ids\":\"4\",\"subcategory_ids\":\"5,6\"}",
 							"type": "text"
 						}
 					]
@@ -183,7 +183,7 @@
 					"urlencoded": [
 						{
 							"key": "json",
-							"value": "{\"user_id\":\"1\",\"pickup_day\":\"2021-03-20\",\"pickup_time\":\"12:30:00\",\"address\":\"c/ Barri de La Bleda 54\",\"payment_type_id\":\"2\",\"items\":[{\"product_id\":\"1\",\"quantity\":\"5\",\"unit_price\":\"30.60\"},{\"product_id\":\"5\",\"quantity\":\"2\",\"unit_price\":\"40.90\"}]}",
+							"value": "{\"user_id\":\"1\",\"pickup_day\":\"2021-04-20\",\"pickup_time\":\"18:30:00\",\"address\":\"c/ Barri de La Bleda 54\",\"payment_type_id\":\"1\",\"items\":[{\"product_id\":\"7\",\"quantity\":\"2\",\"unit_price\":\"40.60\"},{\"product_id\":\"3\",\"quantity\":\"2\",\"unit_price\":\"66\"},{\"product_id\":\"4\",\"quantity\":\"1\",\"unit_price\":\"6.30\"}]}",
 							"type": "text"
 						}
 					]
@@ -210,7 +210,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsIm5hbWUiOiJNYXJjZWwiLCJzdXJuYW1lIjoiTW9saW5hIiwiZW1haWwiOiJtYXBhcmNlcGVsQGdtYWlsLmNvbSIsInBob25lIjoiNjI1OTQxMDAyIiwidXNlcl90eXBlX2lkIjoyLCJpYXQiOjE2MTUwMjY2NzUsImV4cCI6MTYxNTYzMTQ3NX0.JgLLmLqRVmkSIHsTBqILRM7JMvmRmWwxowxE2zU79Fo\"",
+						"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsIm5hbWUiOiJNYXJjZWwiLCJzdXJuYW1lIjoiTW9saW5hIiwiZW1haWwiOiJtYXBhcmNlcGVsQGdtYWlsLmNvbSIsInBob25lIjoiNjI1OTQxMDAyIiwidXNlcl90eXBlX2lkIjoyLCJpYXQiOjE2MTUxMzgxMDMsImV4cCI6MTYxNTc0MjkwM30.3blYxV9GF59Qsu1FxCS0ouCSuTyz44744hE9DBX55b4\"",
 						"type": "text"
 					}
 				],
@@ -233,6 +233,41 @@
 					"path": [
 						"history",
 						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product/search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "json",
+							"value": "{\"product_type_id\":\"1\",\"text\":\"voluptate\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{app-delivery}}/product/search",
+					"host": [
+						"{{app-delivery}}"
+					],
+					"path": [
+						"product",
+						"search"
 					]
 				}
 			},
