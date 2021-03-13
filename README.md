@@ -1,6 +1,6 @@
 
 
-## DOCUMENTACIÓN API APP-DELIVERY
+## API APP-DELIVERY
 
 Api desarrollada con Laravel para realizar pedidos y recuperarlos con el detalle de productos incluidos. 
 Listar productos filtrados por tipo, categoría o subcategoría; o buscarlos a partir de un texto. 
