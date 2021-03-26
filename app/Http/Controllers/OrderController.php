@@ -22,10 +22,12 @@ class OrderController extends Controller
             $json = $request->input('json', null);
             $params_array = json_decode($json, true);
 
+             //Obtener usuario en JWT
+             $decoded = $jwtAuth->checkToken($token, true);  
+             $user_id = $decoded->sub;
+
             //Validar los datos
-            $user_id = $jwtAuth->checkToken($token, true);
             $validate = \Validator::make($params_array, [
-                'user_id'           => 'required|numeric',
                 'pickup_day'        => 'required',
                 'pickup_time'       => 'required',
                 'address'           => 'required',
@@ -49,7 +51,7 @@ class OrderController extends Controller
             }else{ 
 
                 $order = new Order();
-                $order->user_id     = $params_array['user_id'];
+                $order->user_id     = $user_id;
                 $order->pickup_day  = $params_array['pickup_day'];
                 $order->pickup_time = $params_array['pickup_time'];
                 $order->address     = $params_array['address'];
@@ -102,9 +104,8 @@ class OrderController extends Controller
             //Obtener usuario en JWT
             $decoded = $jwtAuth->checkToken($token, true);  
             $user_id = $decoded->sub;
-
-            $orders = Order::where('user_id', $user_id)->get();
-
+            
+            $orders = Order::where(['user_id' => $user_id])->get();
             if(is_object($orders)){
 
                 $orders =  $orders->map(function ($item, $key) {
